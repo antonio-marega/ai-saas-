@@ -25,16 +25,17 @@ export async function GET() {
     if (userSubscription && userSubscription.stripeCustomerId) {
         const stripeSession = await stripe.billingPortal.sessions.create({
             customer:userSubscription.stripeCustomerId,
-            return_url:'https://billing.stripe.com/p/login/test_14k9AVgybcBqfFmbII',
+            return_url:settingsUrl,
         });
-        return new NextResponse(JSON.stringify({url:stripeSession.url}));
+        return new NextResponse(JSON.stringify({ url: stripeSession.url }));
 
     }
 
     const stripeSession =await stripe.checkout.sessions.create({
         
-        success_url:'http://localhost:4242/success',
-        cancel_url:'http://localhost:4242/cancel',
+        success_url: absoluteUrl("/settings"),
+        cancel_url: absoluteUrl("/settings"),
+
         payment_method_types: ["card"],
         mode:"subscription",
         billing_address_collection:"auto",
