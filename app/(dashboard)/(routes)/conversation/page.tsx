@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import{ChatCompletionRequestMessage} from "openai";
+//import{ChatCompletionRequestMessage} from "openai";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
@@ -20,6 +20,13 @@ import { UserAvatar } from "@/components/user-avatar";
 import { BotAvatar } from "@/components/bot-avatar";
 import { useProModal } from "@/hooks/use-pro-modal";
 import toast from "react-hot-toast";
+
+// Manually define the ChatCompletionRequestMessage type
+interface ChatCompletionRequestMessage {
+    role: "user" | "assistant";
+    content: string;
+  }
+  
 
 const ConversationPage =() =>{
     const proModal =useProModal();
