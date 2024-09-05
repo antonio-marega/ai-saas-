@@ -41,7 +41,7 @@ const onSubmit = async (values:z.infer<typeof formSchema>) =>{
      } catch(error:any){
         if(error?.response?.status ===403){
             proModal.onOpen();
-            }else{
+           }else{
                 toast.error("Something went wrong");
             }
      } finally{
